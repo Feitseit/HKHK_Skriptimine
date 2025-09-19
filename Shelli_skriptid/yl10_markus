@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read -p "Sisesta kasutajanimi: " kasutaja
+read -s -p "Sisesta parool: " parool
+echo ""
+sudo useradd -m "$kasutaja"
+
+echo "$kasutaja:$parool" | sudo chpasswd
+kataloog="/home/$kasutaja/kataloog"
+fail="$kataloog/teretulemast_${kasutaja}.txt"
+sudo mkdir -p "$kataloog"
+echo "Tere tuleast, $kasutaja!" > "$fail"
+sudo chown -R "$kasutaja:$kasutaja" "$kataloog"
+echo "Kasutaja loodud ja fail asub: $fail"
