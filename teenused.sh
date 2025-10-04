@@ -1,7 +1,8 @@
 #!/bin/bash
 LOGIFAIL="/mnt/c/GitHub-ITS24/teenused.log"
+RUN=$1
 
-for teenus in apache2 ssh;do
+for teenus in apache2 ssh; do
 	if systemctl is-active --quiet $teenus
 	then
 		echo "Teenus $teenus töötab"
@@ -18,4 +19,5 @@ for teenus in apache2 ssh;do
 			echo "Viga; $teenus ei käivitunud."
 		fi
 	fi
+echo $RUN
 done
